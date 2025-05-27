@@ -1,4 +1,26 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation"; 
+
+function WelcomeButton() {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/welcome"); // ← これで遷移
+  };
+
+  return (
+    <div className="fixed bottom-8 right-8">
+      <button
+        onClick={handleClick}
+        className="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition"
+      >
+        Welcome
+      </button>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -51,6 +73,7 @@ export default function Home() {
           </a>
         </div>
       </main>
+
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -98,6 +121,9 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+
+      {/* ✅ ここに WelcomeButton を追加！ */}
+      <WelcomeButton />
     </div>
   );
 }
