@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function SignupPage() {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,6 +33,7 @@ export default function SignupPage() {
 
     if (res.ok) {
       setMessage('登録に成功しました！');
+      router.push('/home'); 
     } else {
       setMessage(`エラー: ${data.errors?.join(', ')}`);
     }
