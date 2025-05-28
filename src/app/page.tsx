@@ -1,10 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import React from 'react';
+import Header from '../../src/components/Header';
+
 
 export default function WelcomePage() {
   return (
-    <div className="p-8 text-center min-h-screen flex flex-col justify-center items-center gap-6">
+    <>
+      <Header />
+    <div className="bg-white p-8 text-center min-h-screen flex flex-col justify-center items-center gap-6">
+
       <h1 className="text-4xl font-bold">Gymba+R</h1>
       {/* <p className="text-lg text-gray-600">Gymba+R</p> */}
 
@@ -21,5 +27,6 @@ export default function WelcomePage() {
         </Link>
       </div>
     </div>
+    </>
   );
 }
