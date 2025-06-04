@@ -1,4 +1,5 @@
-import Header from '@/feature/Header/Header';
+// import Header from '@/feature/Header/Header';
+import Header from '../../feature/Header/Header';
 import { StartTrainingButton } from '@/feature/StartTrainingButton/StartTrainingButton';
 import React from 'react';
 
