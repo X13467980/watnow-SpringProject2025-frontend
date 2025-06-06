@@ -59,7 +59,7 @@ export default function CameraPage() {
             onClick={handleTakePhoto}
             className="bg-green-600 text-white text-lg font-bold py-2 px-6 rounded hover:bg-green-700 transition"
           >
-            撮影する📸
+            撮影する
           </button>
         )}
 
