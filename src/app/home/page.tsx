@@ -18,7 +18,7 @@ export default function HomePage() {
       {/* フッター */}
       <footer className="h-16 bg-black border-t border-gray-700 flex justify-around items-center">
         {[
-          { label: 'CAMERA', icon: 'search.svg', link: '/camera' },
+          { label: 'CAMERA', icon: 'camera.svg', link: '/camera' },
           { label: 'HOME', icon: 'home.svg', link: '/home' },
           { label: 'LIST', icon: 'menu.svg', link: '/hoge' },
         ].map(({ label, icon, link }) => (
