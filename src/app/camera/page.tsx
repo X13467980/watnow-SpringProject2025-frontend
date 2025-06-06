@@ -57,13 +57,13 @@ export default function CameraPage() {
         {streaming && (
           <button
             onClick={handleTakePhoto}
-            className="bg-green-600 text-white text-lg font-bold py-2 px-6 rounded hover:bg-green-700 transition"
+            className="bg-[#B31717] text-white text-lg font-bold py-2 px-6 rounded hover:bg-[#A00000] transition"
           >
             撮影する
           </button>
         )}
 
-        <canvas ref={canvasRef} className="mt-4 border border-white rounded" />
+        <canvas ref={canvasRef} className="mt-4 rounded" />
       </div>
     </>
   );
