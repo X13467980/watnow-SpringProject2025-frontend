@@ -14,7 +14,7 @@ export default function PreCameraPage() {
             <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-8">
                 <button
                     onClick={handleStartCamera}
-                    className="bg-ritsred text-white text-lg justify-center font-bold py-4 px-8 rounded-xl hover:bg-red-700 transition"
+                    className="bg-[#B31717] text-white text-lg justify-center font-bold py-4 px-8 rounded-xl hover:bg-[#B31717] transition"
                 >
                     カメラを起動する
                 </button>
