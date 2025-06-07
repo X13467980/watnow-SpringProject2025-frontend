@@ -1,6 +1,7 @@
 import Header from '@/feature/Header/Header';
 import { StartTrainingButton } from '@/feature/StartTrainingButton/StartTrainingButton';
 import React from 'react';
+import Link from 'next/link';
 
 export default function HomePage() {
   return (
@@ -17,14 +18,16 @@ export default function HomePage() {
       {/* フッター */}
       <footer className="h-16 bg-black border-t border-gray-700 flex justify-around items-center">
         {[
-          { label: 'SNS', icon: 'search.svg' },
-          { label: 'HOME', icon: 'home.svg' },
-          { label: 'LIST', icon: 'menu.svg' },
-        ].map(({ label, icon }) => (
-          <button key={label} className="flex flex-col items-center text-sm text-white">
+          { label: 'CAMERA', icon: 'camera.svg', link: '/camera' },
+          { label: 'HOME', icon: 'home.svg', link: '/home' },
+          { label: 'LIST', icon: 'menu.svg', link: '/hoge' },
+        ].map(({ label, icon, link }) => (
+          <Link href={link} key={label} className="flex flex-col items-center text-sm text-white">
+          <button className="flex flex-col items-center text-sm text-white">
             <img src={icon} alt={label} className="w-6 h-6 mb-1" />
             {label}
           </button>
+          </Link>
         ))}
       </footer>
     </div>
