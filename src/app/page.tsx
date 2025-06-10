@@ -1,16 +1,16 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-// import Header from '../../src/components/Header';
+import logo from '../../public/logo.svg';
 
 export default function WelcomePage() {
   return (
     <>
-    {/* <Header /> */}
       <div className="bg-black p-8 text-center min-h-screen flex flex-col justify-center items-center gap-6">
-        <img
-          src="/logo.svg"
+        <Image
+          src={logo}
           alt="Gymba+R Logo"
           className="w-64 h-64 object-contain rounded-2xl shadow-lg bg-black"
         />
