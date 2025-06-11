@@ -22,7 +22,7 @@ export default function WelcomePage() {
             </button>
           </Link>
           <Link href="/signup">
-            <button className="bg-white text-ritsred px-6 py-2 rounded-3xl hover:bg-blue-700 transition text-2xl w-full font-bold text-red-800">
+            <button className="bg-white px-6 py-2 rounded-3xl hover:bg-blue-700 transition text-2xl w-full font-bold text-red-800">
               Sign Up
             </button>
           </Link>
