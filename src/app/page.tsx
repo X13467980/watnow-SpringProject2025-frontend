@@ -17,7 +17,7 @@ export default function WelcomePage() {
 
         <div className="grid gap-4 w-[min(70vw,600px)]">
           <Link href="/login">
-            <button className="bg-none border border-white text-white px-6 py-2 rounded-3xl hover:bg-gray-700 transition text-2xl w-full font-bold">
+            <button className="bg-transparent border border-white text-white px-6 py-2 rounded-3xl hover:bg-gray-700 transition text-2xl w-full font-bold">
               Log In
             </button>
           </Link>
