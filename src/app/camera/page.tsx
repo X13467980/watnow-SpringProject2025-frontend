@@ -36,41 +36,46 @@ export default function CameraPage() {
     context.drawImage(videoRef.current, 0, 0, width, height);
 
     // canvas → Blob に変換
-    canvasRef.current.toBlob(async (blob) => {
-      if (!blob) return;
+canvasRef.current.toBlob(async (blob) => {
+  if (!blob) return;
 
+  // base64化して保存
+  const reader = new FileReader();
+  reader.onloadend = async () => {
+    localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
+
+    let machine = '不明';
+    let menus: any[] = [];
+
+    try {
       const formData = new FormData();
       formData.append('image', blob, 'photo.jpg');
 
-      try {
-        const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
-          method: 'POST',
-          body: formData,
-        });
+      const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
+        method: 'POST',
+        body: formData,
+      });
 
-        if (!response.ok) {
-          throw new Error('サーバーエラー');
-        }
+      if (!response.ok) throw new Error('サーバーエラー');
 
-        const result = await response.json();
+      const result = await response.json();
+      machine = result.machine_name || '不明';
+      menus = result.menus || [];
+    } catch (error) {
+      console.error('判別失敗:', error);
+      // エラーでも遷移
+    }
 
-        // ✅ 画像を localStorage に保存
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
+    const query = new URLSearchParams({
+      machine,
+      menus: JSON.stringify(menus),
+    });
 
-          const query = new URLSearchParams({
-            machine: result.machine_name,
-            menus: JSON.stringify(result.menus),
-          });
-          router.push(`/result?${query.toString()}`);
-        };
-        reader.readAsDataURL(blob); // base64化
-      } catch (error) {
-        console.error('判別失敗:', error);
-        alert('マシンの判定に失敗しました');
-      }
-    }, 'image/jpeg');
+    router.push(`/result?${query.toString()}`);
+  };
+
+  reader.readAsDataURL(blob);
+}, 'image/jpeg');
   };
 
   return (
