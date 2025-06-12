@@ -12,18 +12,29 @@ export default function ResultPage() {
     const saved = localStorage.getItem('capturedImage');
     if (saved) {
       setImage(saved);
-      localStorage.removeItem('capturedImage'); // 一度だけ使うなら削除
+      localStorage.removeItem('capturedImage');
     }
   }, []);
 
   return (
     <div className="min-h-screen bg-black text-white p-4">
       <h1 className="text-2xl font-bold mb-4">判定結果</h1>
-      {image && <img src={image} alt="撮影画像" className="w-full rounded-lg mb-4" />}
-      <p className="text-xl">マシン名: <strong>{machine}</strong></p>
-      <ul className="mt-2">
+
+      {image && (
+        <img src={image} alt="撮影画像" className="w-full rounded-lg mb-6" />
+      )}
+
+      <p className="text-xl mb-4">マシン名: <strong>{machine}</strong></p>
+
+      <h2 className="text-lg font-semibold mb-2">トレーニングメニュー:</h2>
+      <ul className="space-y-2">
         {menus.map((m: any, i: number) => (
-          <li key={i}>・{m.name}（{m.part}）</li>
+          <li key={i} className="bg-gray-800 p-3 rounded-lg">
+            <p className="text-base font-bold">{m.name}</p>
+            <p className="text-sm">部位: {m.part}</p>
+            <p className="text-sm">回数: {m.count}回 × {m.set_count}セット</p>
+            <p className="text-sm">重量: {m.weight}kg</p>
+          </li>
         ))}
       </ul>
     </div>
