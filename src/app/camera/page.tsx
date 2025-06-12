@@ -80,38 +80,37 @@ canvasRef.current.toBlob(async (blob) => {
   };
 
   return (
-    <>
-      <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-4 gap-4">
-        {!streaming && (
+  <div className="flex flex-col h-screen bg-black text-white">
+    <Header />
+    <div className="flex flex-col items-center justify-center flex-1 p-4 gap-4">
+      {!streaming && (
+        <button
+          onClick={handleStartCamera}
+          className="w-full bg-[#B31717] flex justify-between items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
+        >
+          <span>器具の検索</span>
+          <img src="/camera.svg" alt="camera" className="w-6 h-6" />
+        </button>
+      )}
 
-          <button
-            onClick={handleStartCamera}
-            className="w-full bg-[#B31717] flex justify-between items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
-          >
-            <span>器具の検索</span>
-            <img src="/camera.svg" alt="camera" className="w-6 h-6" />
-          </button>
-        )}
+      <video
+        ref={videoRef}
+        className={`${streaming ? 'block' : 'hidden'} rounded-lg`}
+        autoPlay
+      ></video>
 
-        <video
-          ref={videoRef}
-          className={`${streaming ? 'block' : 'hidden'} rounded-lg`}
-          autoPlay
-        ></video>
+      {streaming && (
+        <button
+          onClick={handleTakePhoto}
+          className="bg-[#B31717] text-white text-lg font-bold py-2 px-6 rounded hover:bg-[#A00000] transition"
+        >
+          撮影する
+        </button>
+      )}
 
-        {streaming && (
-          <button
-            onClick={handleTakePhoto}
-            className="bg-[#B31717] text-white text-lg font-bold py-2 px-6 rounded hover:bg-[#A00000] transition"
-          >
-            撮影する
-          </button>
-        )}
-
-        <canvas ref={canvasRef} className="hidden" />
-      </div>
-      <Footer />
-    </>
-  );
+      <canvas ref={canvasRef} className="hidden" />
+    </div>
+    <Footer />
+  </div>
+);
 }
