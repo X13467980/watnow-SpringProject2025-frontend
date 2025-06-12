@@ -1,6 +1,8 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { FaPlay } from 'react-icons/fa';
+import Footer from '@/feature/Footer/Footer';
 
 export default function ResultPage() {
   const params = useSearchParams();
@@ -17,26 +19,40 @@ export default function ResultPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white p-4">
-      <h1 className="text-2xl font-bold mb-4">マシン判定結果</h1>
+    <div className="flex flex-col min-h-screen bg-black text-white">
+      <div className="flex-1 px-6 pt-6">
+        {/* 撮影画像 */}
+        {image && (
+          <img
+            src={image}
+            alt="撮影画像"
+            className="w-full rounded-lg mb-6 object-cover max-h-64"
+          />
+        )}
 
-      {image && (
-        <img src={image} alt="撮影画像" className="w-full rounded-lg mb-6" />
-      )}
+        {/* 器具名 */}
+        <h1 className="text-2xl font-bold mb-6">Machine Name:{machine}</h1>
 
-      <p className="text-xl mb-4">マシン名: <strong>{machine}</strong></p>
-
-      <h2 className="text-lg font-semibold mb-2">トレーニングメニュー:</h2>
-      <ul className="space-y-2">
-        {menus.map((m: any, i: number) => (
-          <li key={i} className="bg-gray-800 p-3 rounded-lg">
-            <p className="text-base font-bold">{m.name}</p>
-            <p className="text-sm">部位: {m.part}</p>
-            <p className="text-sm">回数: {m.count}回 × {m.set_count}セット</p>
-            <p className="text-sm">重量: {m.weight}kg</p>
-          </li>
-        ))}
-      </ul>
+        {/* Trainings */}
+        <h2 className="text-lg font-bold mb-2">Trainings:</h2>
+        <div className="flex flex-col gap-4">
+          {menus.map((menu: any, index: number) => (
+            <div
+              key={index}
+              className="bg-[#B31717] p-4 rounded-xl flex items-center justify-between"
+            >
+              <div>
+                <p className="font-bold">{menu.name}</p>
+                <p className="text-sm text-white/80">{menu.part}</p>
+              </div>
+              <FaPlay className="text-white text-xl" />
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* フッター */}
+      <Footer />
     </div>
   );
 }
