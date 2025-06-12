@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import Header from '@/feature/Header/Header';
 import { useRouter } from 'next/navigation';
+import Footer from '@/feature/Footer/Footer';
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -110,6 +111,7 @@ canvasRef.current.toBlob(async (blob) => {
 
         <canvas ref={canvasRef} className="hidden" />
       </div>
+      <Footer />
     </>
   );
 }
