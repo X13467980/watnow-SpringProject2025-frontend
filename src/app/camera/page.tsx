@@ -54,14 +54,18 @@ export default function CameraPage() {
 
         const result = await response.json();
 
-        // ✅ 撮影結果と画像を result ページに渡して遷移
-        const imageUrl = URL.createObjectURL(blob);
-        const query = new URLSearchParams({
-          machine: result.machine_name,
-          menus: JSON.stringify(result.menus),
-          image: imageUrl,
-        });
-        router.push(`/result?${query.toString()}`);
+        // ✅ 画像を localStorage に保存
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
+
+          const query = new URLSearchParams({
+            machine: result.machine_name,
+            menus: JSON.stringify(result.menus),
+          });
+          router.push(`/result?${query.toString()}`);
+        };
+        reader.readAsDataURL(blob); // base64化
       } catch (error) {
         console.error('判別失敗:', error);
         alert('マシンの判定に失敗しました');
@@ -99,7 +103,7 @@ export default function CameraPage() {
           </button>
         )}
 
-        <canvas ref={canvasRef} className="mt-4 rounded" />
+        <canvas ref={canvasRef} className="hidden" />
       </div>
     </>
   );
