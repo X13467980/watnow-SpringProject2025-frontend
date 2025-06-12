@@ -1,12 +1,13 @@
 'use client';
 import React, { useRef, useState } from 'react';
 import Header from '@/feature/Header/Header';
+import { useRouter } from 'next/navigation';
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [streaming, setStreaming] = useState(false);
-
+  const router = useRouter();
   const handleStartCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -52,7 +53,15 @@ export default function CameraPage() {
         }
 
         const result = await response.json();
-        alert(`マシン: ${result.machine_name}\nメニュー:\n${result.menus.map((m: any) => `・${m.name} (${m.part})`).join('\n')}`);
+
+        // ✅ 撮影結果と画像を result ページに渡して遷移
+        const imageUrl = URL.createObjectURL(blob);
+        const query = new URLSearchParams({
+          machine: result.machine_name,
+          menus: JSON.stringify(result.menus),
+          image: imageUrl,
+        });
+        router.push(`/result?${query.toString()}`);
       } catch (error) {
         console.error('判別失敗:', error);
         alert('マシンの判定に失敗しました');
