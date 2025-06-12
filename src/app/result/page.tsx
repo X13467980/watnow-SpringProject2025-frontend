@@ -18,7 +18,7 @@ export default function ResultPage() {
 
   return (
     <div className="min-h-screen bg-black text-white p-4">
-      <h1 className="text-2xl font-bold mb-4">判定結果</h1>
+      <h1 className="text-2xl font-bold mb-4">マシン判定結果</h1>
 
       {image && (
         <img src={image} alt="撮影画像" className="w-full rounded-lg mb-6" />
