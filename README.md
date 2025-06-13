@@ -2,16 +2,33 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Frontend (Next.js)
+
 First, run the development server:
 
 ```bash
-npm run dev
+npm run dev -- -p 3001
 # or
-yarn dev
+yarn dev -- -p 3001
 # or
-pnpm dev
-# or
-bun dev
+pnpm dev -- -p 3001
+
+```
+
+### Backend (Ruby on Rails)
+
+in https://github.com/X13467980/watnow-SpringProject2025-backend
+
+
+```bash
+# install dependencies
+bundle install
+
+# setup database
+bundle exec rails db:create db:migrate
+
+# run the Rails API server on port 3000
+bundle exec rails s -p 3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
