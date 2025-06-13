@@ -8,7 +8,7 @@ import logo from '../../public/logo.svg';
 export default function WelcomePage() {
   return (
     <>
-      <div className="bg-black text-center min-h-screen flex flex-col justify-start items-center gap-6 pt-48">
+      <div className="bg-black text-center min-h-screen flex flex-col justify-start items-center gap-6 pt-[26vh]">
         <Image
           src={logo}
           alt="Gymba+R Logo"
