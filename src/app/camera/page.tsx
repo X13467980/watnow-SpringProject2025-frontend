@@ -1,11 +1,15 @@
 'use client';
 import React, { useRef, useState } from 'react';
 import Header from '@/feature/Header/Header';
+import { useRouter } from 'next/navigation';
+import Footer from '@/feature/Footer/Footer';
+import { TrainingMenu, MachineResponse } from '@/types/machine'; // 型を共通化
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [streaming, setStreaming] = useState(false);
+  const router = useRouter();
 
   const handleStartCamera = async () => {
     try {
@@ -21,7 +25,7 @@ export default function CameraPage() {
     }
   };
 
-  const handleTakePhoto = () => {
+  const handleTakePhoto = async () => {
     if (!videoRef.current || !canvasRef.current) return;
 
     const context = canvasRef.current.getContext('2d');
@@ -33,18 +37,64 @@ export default function CameraPage() {
     canvasRef.current.width = width;
     canvasRef.current.height = height;
     context.drawImage(videoRef.current, 0, 0, width, height);
+
+    // canvas → Blob に変換
+    canvasRef.current.toBlob(async (blob) => {
+      if (!blob) return;
+
+      // base64化して保存
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
+
+        let machine = '不明';
+        let menus: TrainingMenu[] = [];
+
+        try {
+          const formData = new FormData();
+          formData.append('image', blob, 'photo.jpg');
+
+          const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (!response.ok) throw new Error('サーバーエラー');
+
+          const result: MachineResponse = await response.json();
+          machine = result.machine_name || '不明';
+          menus = result.menus || [];
+        } catch (error) {
+          console.error('判別失敗:', error);
+          alert(
+            `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'
+            }`
+          );
+        }
+
+        const query = new URLSearchParams({
+          machine,
+          menus: JSON.stringify(menus),
+        });
+
+        router.push(`/result?${query.toString()}`);
+      };
+
+      reader.readAsDataURL(blob);
+    }, 'image/jpeg');
   };
 
   return (
-    <>
+    <div className="flex flex-col h-screen bg-black text-white">
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-4 gap-4">
+      <div className="flex flex-col items-center justify-center flex-1 p-4 gap-4">
         {!streaming && (
           <button
             onClick={handleStartCamera}
-            className="bg-[#B31717] text-white text-lg font-bold py-4 px-8 rounded-xl hover:bg-[#A00000] transition"
+            className="w-full bg-[#B31717] flex justify-between items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
           >
-            カメラを起動する
+            <span>器具の検索</span>
+            <img src="/camera.svg" alt="camera" className="w-6 h-6" />
           </button>
         )}
 
@@ -63,8 +113,9 @@ export default function CameraPage() {
           </button>
         )}
 
-        <canvas ref={canvasRef} className="mt-4 rounded" />
+        <canvas ref={canvasRef} className="hidden" />
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
