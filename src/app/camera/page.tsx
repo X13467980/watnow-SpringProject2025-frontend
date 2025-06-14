@@ -37,80 +37,80 @@ export default function CameraPage() {
     context.drawImage(videoRef.current, 0, 0, width, height);
 
     // canvas → Blob に変換
-canvasRef.current.toBlob(async (blob) => {
-  if (!blob) return;
+    canvasRef.current.toBlob(async (blob) => {
+      if (!blob) return;
 
-  // base64化して保存
-  const reader = new FileReader();
-  reader.onloadend = async () => {
-    localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
+      // base64化して保存
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
 
-    let machine = '不明';
-    let menus: any[] = [];
+        let machine = '不明';
+        let menus: any[] = [];
 
-    try {
-      const formData = new FormData();
-      formData.append('image', blob, 'photo.jpg');
+        try {
+          const formData = new FormData();
+          formData.append('image', blob, 'photo.jpg');
 
-      const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
-        method: 'POST',
-        body: formData,
-      });
+          const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
+            method: 'POST',
+            body: formData,
+          });
 
-      if (!response.ok) throw new Error('サーバーエラー');
+          if (!response.ok) throw new Error('サーバーエラー');
 
-      const result = await response.json();
-      machine = result.machine_name || '不明';
-      menus = result.menus || [];
-    } catch (error) {
-      console.error('判別失敗:', error);
-      // エラーでも遷移
-    }
+          const result = await response.json();
+          machine = result.machine_name || '不明';
+          menus = result.menus || [];
+        } catch (error) {
+          console.error('判別失敗:', error);
+          // エラーでも遷移
+        }
 
-    const query = new URLSearchParams({
-      machine,
-      menus: JSON.stringify(menus),
-    });
+        const query = new URLSearchParams({
+          machine,
+          menus: JSON.stringify(menus),
+        });
 
-    router.push(`/result?${query.toString()}`);
-  };
+        router.push(`/result?${query.toString()}`);
+      };
 
-  reader.readAsDataURL(blob);
-}, 'image/jpeg');
+      reader.readAsDataURL(blob);
+    }, 'image/jpeg');
   };
 
   return (
-  <div className="flex flex-col h-screen bg-black text-white">
-    <Header />
-    <div className="flex flex-col items-center justify-center flex-1 p-4 gap-4">
-      {!streaming && (
-        <button
-          onClick={handleStartCamera}
-          className="w-full bg-[#B31717] flex justify-between items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
-        >
-          <span>器具の検索</span>
-          <img src="/camera.svg" alt="camera" className="w-6 h-6" />
-        </button>
-      )}
+    <div className="flex flex-col h-screen bg-black text-white">
+      <Header />
+      <div className="flex flex-col items-center justify-center flex-1 p-4 gap-4">
+        {!streaming && (
+          <button
+            onClick={handleStartCamera}
+            className="w-full bg-[#B31717] flex justify-between items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
+          >
+            <span>器具の検索</span>
+            <img src="/camera.svg" alt="camera" className="w-6 h-6" />
+          </button>
+        )}
 
-      <video
-        ref={videoRef}
-        className={`${streaming ? 'block' : 'hidden'} rounded-lg`}
-        autoPlay
-      ></video>
+        <video
+          ref={videoRef}
+          className={`${streaming ? 'block' : 'hidden'} rounded-lg`}
+          autoPlay
+        ></video>
 
-      {streaming && (
-        <button
-          onClick={handleTakePhoto}
-          className="bg-[#B31717] text-white text-lg font-bold py-2 px-6 rounded hover:bg-[#A00000] transition"
-        >
-          撮影する
-        </button>
-      )}
+        {streaming && (
+          <button
+            onClick={handleTakePhoto}
+            className="bg-[#B31717] text-white text-lg font-bold py-2 px-6 rounded hover:bg-[#A00000] transition"
+          >
+            撮影する
+          </button>
+        )}
 
-      <canvas ref={canvasRef} className="hidden" />
+        <canvas ref={canvasRef} className="hidden" />
+      </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
-);
+  );
 }
