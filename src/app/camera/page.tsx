@@ -4,6 +4,20 @@ import Header from '@/feature/Header/Header';
 import { useRouter } from 'next/navigation';
 import Footer from '@/feature/Footer/Footer';
 
+type TrainingMenu = {
+  name: string;
+  part: string;
+  count: number;
+  set_count: number;
+  weight: number;
+};
+
+type MachineResponse = {
+  machine_name: string;
+  image_url: string;
+  menus: TrainingMenu[];
+};
+
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -46,7 +60,7 @@ export default function CameraPage() {
         localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
 
         let machine = '不明';
-        let menus: any[] = [];
+        let menus: TrainingMenu[] = [];
 
         try {
           const formData = new FormData();
@@ -59,7 +73,7 @@ export default function CameraPage() {
 
           if (!response.ok) throw new Error('サーバーエラー');
 
-          const result = await response.json();
+          const result: MachineResponse = await response.json();
           machine = result.machine_name || '不明';
           menus = result.menus || [];
         } catch (error) {
