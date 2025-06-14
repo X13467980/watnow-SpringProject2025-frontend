@@ -3,26 +3,14 @@ import React, { useRef, useState } from 'react';
 import Header from '@/feature/Header/Header';
 import { useRouter } from 'next/navigation';
 import Footer from '@/feature/Footer/Footer';
-
-type TrainingMenu = {
-  name: string;
-  part: string;
-  count: number;
-  set_count: number;
-  weight: number;
-};
-
-type MachineResponse = {
-  machine_name: string;
-  image_url: string;
-  menus: TrainingMenu[];
-};
+import { TrainingMenu, MachineResponse } from '@/types/machine'; // 型を共通化
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [streaming, setStreaming] = useState(false);
   const router = useRouter();
+
   const handleStartCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -78,8 +66,10 @@ export default function CameraPage() {
           menus = result.menus || [];
         } catch (error) {
           console.error('判別失敗:', error);
-          alert(`画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`);
-          // エラーでも遷移
+          alert(
+            `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'
+            }`
+          );
         }
 
         const query = new URLSearchParams({
