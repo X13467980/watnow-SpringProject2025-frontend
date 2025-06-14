@@ -78,6 +78,7 @@ export default function CameraPage() {
           menus = result.menus || [];
         } catch (error) {
           console.error('判別失敗:', error);
+          alert(`画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`);
           // エラーでも遷移
         }
 
