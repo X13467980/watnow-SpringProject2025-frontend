@@ -109,10 +109,9 @@ export default function CameraPage() {
           <>
             <button
               onClick={handleStartCamera}
-              className="w-full bg-[#B31717] flex justify-center items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
+              className="w-full bg-[#B31717] flex justify-center items-center gap-2 text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
             >
-              <span>器具を撮影する
-              </span>
+              <span>器具を撮影する</span>
               <img src="/camera.svg" alt="camera" className="w-6 h-6" />
             </button>
 
