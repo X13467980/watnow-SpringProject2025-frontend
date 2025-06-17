@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import Header from '@/feature/Header/Header';
 import { useRouter } from 'next/navigation';
 import Footer from '@/feature/Footer/Footer';
-import { TrainingMenu, MachineResponse } from '@/types/machine'; // 型を共通化
+import { TrainingMenu, MachineResponse } from '@/types/machine';
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -38,64 +38,96 @@ export default function CameraPage() {
     canvasRef.current.height = height;
     context.drawImage(videoRef.current, 0, 0, width, height);
 
-    // canvas → Blob に変換
     canvasRef.current.toBlob(async (blob) => {
       if (!blob) return;
-
-      // base64化して保存
       const reader = new FileReader();
       reader.onloadend = async () => {
-        localStorage.setItem('capturedImage', reader.result as string); // base64形式で保存
+        localStorage.setItem('capturedImage', reader.result as string);
 
-        let machine = '不明';
-        let menus: TrainingMenu[] = [];
-
-        try {
-          const formData = new FormData();
-          formData.append('image', blob, 'photo.jpg');
-
-          const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
-            method: 'POST',
-            body: formData,
-          });
-
-          if (!response.ok) throw new Error('サーバーエラー');
-
-          const result: MachineResponse = await response.json();
-          machine = result.machine_name || '不明';
-          menus = result.menus || [];
-        } catch (error) {
-          console.error('判別失敗:', error);
-          alert(
-            `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'
-            }`
-          );
-        }
-
-        const query = new URLSearchParams({
-          machine,
-          menus: JSON.stringify(menus),
-        });
-
-        router.push(`/result?${query.toString()}`);
+        await identifyMachine(blob);
       };
-
       reader.readAsDataURL(blob);
     }, 'image/jpeg');
   };
+
+  const handleUploadPhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const base64 = await toBase64(file);
+    localStorage.setItem('capturedImage', base64);
+
+    await identifyMachine(file);
+  };
+
+  const identifyMachine = async (imageFile: Blob | File) => {
+    let machine = '不明';
+    let menus: TrainingMenu[] = [];
+
+    try {
+      const formData = new FormData();
+      formData.append('image', imageFile);
+
+      const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('サーバーエラー');
+
+      const result: MachineResponse = await response.json();
+      machine = result.machine_name || '不明';
+      menus = result.menus || [];
+    } catch (error) {
+      console.error('判別失敗:', error);
+      alert(
+        `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`
+      );
+    }
+
+    const query = new URLSearchParams({
+      machine,
+      menus: JSON.stringify(menus),
+    });
+
+    router.push(`/result?${query.toString()}`);
+  };
+
+  const toBase64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
 
   return (
     <div className="flex flex-col h-screen bg-black text-white">
       <Header />
       <div className="flex flex-col items-center justify-center flex-1 p-4 gap-4">
         {!streaming && (
-          <button
-            onClick={handleStartCamera}
-            className="w-full bg-[#B31717] flex justify-between items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
-          >
-            <span>器具の検索</span>
-            <img src="/camera.svg" alt="camera" className="w-6 h-6" />
-          </button>
+          <>
+            <button
+              onClick={handleStartCamera}
+              className="w-full bg-[#B31717] flex justify-center items-center text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
+            >
+              <span>器具を撮影する
+              </span>
+              <img src="/camera.svg" alt="camera" className="w-6 h-6" />
+            </button>
+
+            <label className="w-full">
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleUploadPhoto}
+              />
+              <div className="w-full bg-[#B31717] text-white text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition text-center cursor-pointer">
+                ギャラリーから画像を選ぶ
+              </div>
+            </label>
+          </>
         )}
 
         <video
