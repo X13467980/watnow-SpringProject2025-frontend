@@ -1,9 +1,6 @@
 export type TrainingMenu = {
   name: string;
   part: string;
-  count: number;
-  set_count: number;
-  weight: number;
 };
 
 export type MachineResponse = {
@@ -11,3 +8,4 @@ export type MachineResponse = {
   image_url: string;
   menus: TrainingMenu[];
 };
+
