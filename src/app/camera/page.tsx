@@ -10,6 +10,7 @@ export default function CameraPage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [streaming, setStreaming] = useState(false);
   const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleStartCamera = async () => {
     try {
@@ -20,7 +21,7 @@ export default function CameraPage() {
         setStreaming(true);
       }
     } catch (err) {
-      alert('カメラを起動できませんでした。許可が必要です。');
+      setErrorMessage('カメラを起動できませんでした。許可が必要です。');
       console.error(err);
     }
   };
@@ -80,7 +81,7 @@ export default function CameraPage() {
       menus = result.menus || [];
     } catch (error) {
       console.error('判別失敗:', error);
-      alert(
+      setErrorMessage(
         `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`
       );
     }
