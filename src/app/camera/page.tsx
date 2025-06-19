@@ -74,7 +74,10 @@ export default function CameraPage() {
         body: formData,
       });
 
-      if (!response.ok) throw new Error('サーバーエラー');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'サーバーエラー');
+      }
 
       const result: MachineResponse = await response.json();
       machine = result.machine_name || '不明';
@@ -82,8 +85,10 @@ export default function CameraPage() {
     } catch (error) {
       console.error('判別失敗:', error);
       setErrorMessage(
-        `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`
+        `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'
+        }`
       );
+      return; // エラーが起きたら画面遷移しない
     }
 
     const query = new URLSearchParams({
