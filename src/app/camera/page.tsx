@@ -4,6 +4,7 @@ import Header from '@/feature/Header/Header';
 import { useRouter } from 'next/navigation';
 import Footer from '@/feature/Footer/Footer';
 import { TrainingMenu, MachineResponse } from '@/types/machine';
+import Image from 'next/image';
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -118,7 +119,7 @@ export default function CameraPage() {
               className="w-full bg-[#B31717] flex justify-center items-center gap-2 text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
             >
               <span>器具を撮影する</span>
-              <img src="/camera.svg" alt="camera" className="w-6 h-6" />
+              <Image src="/camera.svg" alt="camera icon" width={24} height={24} />
             </button>
 
             <label className="w-full">
