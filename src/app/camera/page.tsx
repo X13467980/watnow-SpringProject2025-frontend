@@ -151,6 +151,12 @@ export default function CameraPage() {
         )}
 
         <canvas ref={canvasRef} className="hidden" />
+
+        {errorMessage && (
+          <div className="text-white font-semibold text-center mt-4 whitespace-pre-line">
+            {errorMessage}
+          </div>
+        )}
       </div>
       <Footer />
     </div>
