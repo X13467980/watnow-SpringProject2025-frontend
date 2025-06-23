@@ -82,3 +82,30 @@ body {
   color: black;
   font-weight: bold;
 }
+
+/* ▼ 選択された日付（クリック後） */
+.custom-calendar .react-calendar__tile--active {
+  background-color: #B31717;
+  color: white;
+  font-weight: bold;
+  border-radius: 9999px;
+}
+
+/* ▼ 今日の日付 */
+.custom-calendar .react-calendar__tile--now {
+  border: 2px solid #B31717;
+  color: white;
+}
+
+/* ▼ ホバー時 */
+.custom-calendar .react-calendar__tile:hover {
+  background-color: #B31717;
+  color: white;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+
+/* ▼ ナビゲーション矢印のホバー色（任意） */
+.custom-calendar .react-calendar__navigation__arrow:hover {
+  color: #B31717;
+}
