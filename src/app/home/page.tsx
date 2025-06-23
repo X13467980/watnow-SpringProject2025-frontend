@@ -16,7 +16,7 @@ export default function HomePage() {
 
       <main className="flex-grow px-6 pt-6">
         <section className="mb-6">
-            <h2 className="text-3xl font-extrabold mb-4">Activity</h2>
+            <h2 className="text-3xl font-extrabold">Activity</h2>
 
           <div className="bg-black rounded-lg p-4">
             <Calendar
