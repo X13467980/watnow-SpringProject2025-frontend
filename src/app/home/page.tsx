@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import 'react-calendar/dist/Calendar.css'; // 標準CSSを読みつつ上書きで調整
 import Header from '@/feature/Header/Header';
 import { StartTrainingButton } from '@/feature/StartTrainingButton/StartTrainingButton';
 import Footer from '@/feature/Footer/Footer';
@@ -15,22 +15,17 @@ export default function HomePage() {
       <Header />
 
       <main className="flex-grow px-6 pt-6">
-        {/* Activity セクション */}
         <section className="mb-6">
           <h2 className="text-xl font-bold mb-2">Activity</h2>
-          <div className="bg-gray-800 border border-white rounded-lg p-4 h-48 mb-4" />
 
-          {/* カレンダー */}
-          <div className="bg-gray-800 border border-white rounded-lg p-4">
+          <div className="bg-black rounded-lg p-4">
             <Calendar
               value={value}
               onChange={(newDate) => setValue(newDate as Date)}
-              className="text-black rounded"
+              className="custom-calendar"
             />
           </div>
         </section>
-
-        {/* Playlist セクション（今後追加可能） */}
       </main>
 
       <StartTrainingButton />
