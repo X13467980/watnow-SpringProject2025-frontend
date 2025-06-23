@@ -25,7 +25,6 @@ export default function HomePage() {
               className="custom-calendar"
               locale="en-US"
               calendarType="gregory"
-              showNavigation={false}  // ✅ ナビゲーション（月表示）を非表示に
             />
           </div>
         </section>
