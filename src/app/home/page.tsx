@@ -23,6 +23,9 @@ export default function HomePage() {
               value={value}
               onChange={(newDate) => setValue(newDate as Date)}
               className="custom-calendar"
+              locale="en-US"
+              calendarType="gregory"
+              showNavigation={false}  // ✅ ナビゲーション（月表示）を非表示に
             />
           </div>
         </section>
