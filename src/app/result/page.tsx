@@ -55,7 +55,10 @@ export default function ResultPage() {
                 <p className="font-bold">{menu.name}</p>
                 <p className="text-sm text-white/80">{menu.part}</p>
               </div>
-              <button onClick={() => handlePlayClick(menu.name)}>
+              <button
+                onClick={() => handlePlayClick(menu.name)}
+                className="p-2 bg-white/10 hover:bg-white/20 active:scale-90 rounded-full transition duration-200"
+              >
                 <FaPlay className="text-white text-xl" />
               </button>
             </div>
