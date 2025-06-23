@@ -80,9 +80,12 @@ export default function CameraPage() {
         throw new Error(errorData.message || 'サーバーエラー');
       }
 
-      const result: MachineResponse = await response.json();
-      machine = result.machine_name || '不明';
-      menus = result.menus || [];
+      const result: MachineResponse[] = await response.json();
+      if (result.length === 0) {
+        throw new Error('画像から器具を判別できませんでした。');
+      }
+      machine = result[0].machine_name || '不明';
+      menus = result[0].menus || [];
     } catch (error) {
       console.error('判別失敗:', error);
       setErrorMessage(
