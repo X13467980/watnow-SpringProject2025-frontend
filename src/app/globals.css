@@ -24,3 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* カレンダー全体の文字を太字に */
+.custom-calendar,
+.custom-calendar * {
+  font-weight: bold;
+}
