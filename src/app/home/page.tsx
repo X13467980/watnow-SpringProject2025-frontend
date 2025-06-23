@@ -10,7 +10,7 @@ import Footer from '@/feature/Footer/Footer';
 export default function HomePage() {
   const [value, setValue] = useState<Date>(new Date());
 
-  // 仮の筋トレ記録データ（日付はISO形式）
+  // 仮の筋トレ記録データ
   const trainingDays = [
     '2025-06-21',
     '2025-06-22',
