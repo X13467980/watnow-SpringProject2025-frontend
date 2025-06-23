@@ -1,5 +1,5 @@
 'use client';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import Footer from '@/feature/Footer/Footer';
@@ -7,6 +7,7 @@ import { TrainingMenu } from '@/types/machine';
 
 export default function ResultPage() {
   const params = useSearchParams();
+  const router = useRouter();
   const machine = params.get('machine');
   const menus: TrainingMenu[] = JSON.parse(params.get('menus') || '[]');
   const [image, setImage] = useState<string | null>(null);
@@ -18,6 +19,10 @@ export default function ResultPage() {
       localStorage.removeItem('capturedImage');
     }
   }, []);
+
+  const handlePlayClick = (menuName: string) => {
+    router.push(`/training?menu=${encodeURIComponent(menuName)}`);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
@@ -50,7 +55,9 @@ export default function ResultPage() {
                 <p className="font-bold">{menu.name}</p>
                 <p className="text-sm text-white/80">{menu.part}</p>
               </div>
-              <FaPlay className="text-white text-xl" />
+              <button onClick={() => handlePlayClick(menu.name)}>
+                <FaPlay className="text-white text-xl" />
+              </button>
             </div>
           ))}
         </div>
