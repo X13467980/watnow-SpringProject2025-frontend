@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // 標準CSSを読みつつ上書きで調整
+import 'react-calendar/dist/Calendar.css'; 
 import Header from '@/feature/Header/Header';
 import { StartTrainingButton } from '@/feature/StartTrainingButton/StartTrainingButton';
 import Footer from '@/feature/Footer/Footer';
