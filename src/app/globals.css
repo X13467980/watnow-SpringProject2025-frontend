@@ -30,3 +30,55 @@ body {
 .custom-calendar * {
   font-weight: bold;
 }
+
+/* 黒背景に馴染むダークカレンダー */
+.calendar-dark {
+  background-color: #000000;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+/* 月・年の表示（例: May 2025） */
+.calendar-dark .react-calendar__navigation {
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+}
+
+/* 曜日ヘッダー（SUN～SAT） */
+.calendar-dark .react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+}
+
+/* 日付セル */
+.calendar-dark .react-calendar__tile {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 9999px;
+  color: white;
+  font-weight: bold;
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+/* 今日（Today）のスタイル */
+.calendar-dark .react-calendar__tile--now {
+  border: 2px solid white;
+}
+
+/* 選択された日（白背景＋黒文字） */
+.calendar-dark .react-calendar__tile--active {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
