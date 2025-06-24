@@ -8,6 +8,7 @@ import 'react-calendar/dist/Calendar.css';
 export const ActivityCalendar = () => {
   const [value, setValue] = useState<Date>(new Date());
 
+  // 仮のデータ 後々はAPIから取得する
   const trainingDays = [
     '2025-06-21', '2025-06-22', '2025-06-24', '2025-06-25',
     '2025-06-26', '2025-06-27', '2025-06-28', '2025-06-30',
