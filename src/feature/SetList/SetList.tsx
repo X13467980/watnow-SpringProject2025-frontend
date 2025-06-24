@@ -35,9 +35,9 @@ export const SetList = () => {
 
       <div className="overflow-x-auto whitespace-nowrap pb-2">
         <div className="flex gap-4">
-          {setLists.map((item, index) => (
+          {setLists.map((item) => (
             <div
-              key={index}
+              key={item.title}
               className="relative w-40 h-48 bg-black border border-white rounded-xl flex-shrink-0"
             >
               <button
