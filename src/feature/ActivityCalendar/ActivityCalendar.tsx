@@ -43,7 +43,7 @@ export const ActivityCalendar = () => {
         />
         <div className="mt-4 text-lg font-semibold text-white flex justify-between">
           <span>TOTAL: {totalDays} days</span>
-          <span>STREAK: {streak} days</span>
+          <span>STREAK: {streak} days🔥</span>
         </div>
       </div>
     </section>

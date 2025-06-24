@@ -9,6 +9,18 @@ export const SetList = () => {
     { title: 'For Arm 15min' },
     { title: 'For Arm 5min' },
     { title: 'For Leg 10min' },
+    { title: 'For Back 20min' },
+    { title: 'For Chest 30min' },
+    { title: 'For Shoulder 25min' },
+    { title: 'For Core 15min' },
+    { title: 'For Cardio 40min' },
+    { title: 'For Full Body 60min' },
+    { title: 'For Flexibility 15min' },
+    { title: 'For Endurance 50min' },
+    { title: 'For Strength 45min' },
+    { title: 'For Speed 30min' },
+    { title: 'For Agility 20min' },
+    { title: 'For Balance 15min' },
   ];
 
   return (
