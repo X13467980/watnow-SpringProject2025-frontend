@@ -5,7 +5,7 @@ export default function Footer() {
   const navItems = [
     { label: 'CAMERA', icon: 'camera.svg', link: '/camera' },
     { label: 'HOME', icon: 'home.svg', link: '/home' },
-    { label: 'LIST', icon: 'menu.svg', link: '/hoge' },
+    { label: 'LIST', icon: 'menu.svg', link: '/list' },
   ];
 
   return (
