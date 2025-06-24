@@ -37,7 +37,7 @@ export const ActivityCalendar = () => {
         <Calendar
           value={value}
           onChange={(newDate) => setValue(newDate as Date)}
-          className="custom-calendar"
+          className="custom-calendar calendar-dark"
           locale="en-US"
           calendarType="gregory"
         />
