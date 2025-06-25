@@ -17,17 +17,23 @@ export const ActivityCalendar = () => {
   const totalDays = trainingDays.length;
 
   const streak = useMemo(() => {
-    const sorted = [...trainingDays].sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
-    let count = 1;
-    for (let i = 1; i < sorted.length; i++) {
-      const prev = new Date(sorted[i - 1]);
-      const curr = new Date(sorted[i]);
-      const diff = (prev.getTime() - curr.getTime()) / (1000 * 60 * 60 * 24);
-      if (diff === 1) count++;
-      else break;
+  const todayStr = new Date().toISOString().split('T')[0];
+  const daysSet = new Set(trainingDays);
+  let streakCount = 0;
+  let date = new Date(todayStr);
+
+  while (true) {
+    const dateStr = date.toISOString().split('T')[0];
+    if (daysSet.has(dateStr)) {
+      streakCount++;
+      date.setDate(date.getDate() - 1); 
+    } else {
+      break;
     }
-    return count;
-  }, [trainingDays]);
+  }
+
+  return streakCount;
+}, [trainingDays]);
 
   return (
     <section className="mb-6">
