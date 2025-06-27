@@ -18,7 +18,7 @@ export async function getMuscleGroups(): Promise<MuscleGroups[]> {
       return [];
     }
 
-    return data; // [{ name: "胸（大胸筋）", exercises: [...] }, ...]
+    return data;
   } catch (error) {
     console.error('Fetch error:', error);
     return [];
