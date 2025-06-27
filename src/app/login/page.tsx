@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     try {
-      const res = await fetch("http://localhost:3000/api/v1/sessions", {
-        method: "POST", // ← ここを追加
+      const res = await fetch('http://localhost:3000/api/v1/sessions', {
+        method: 'POST', // ← ここを追加
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
@@ -26,13 +26,14 @@ export default function LoginPage() {
 
       if (res.ok) {
         // 必要ならトークンをlocalStorageなどに保存
-        // localStorage.setItem('user', JSON.stringify(data.user));
-        router.push("/home");
+        localStorage.setItem('user', JSON.stringify(data.user));
+        print('ログイン成功', data);
+        router.push('/home');
       } else {
-        setError(data.error || "ログインに失敗しました");
+        setError(data.error || 'ログインに失敗しました');
       }
     } catch (err) {
-      setError("通信エラーが発生しました");
+      setError('通信エラーが発生しました');
     }
   };
 

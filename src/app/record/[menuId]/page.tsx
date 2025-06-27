@@ -1,11 +1,11 @@
-"use client";
-import Header from "@/feature/Header/Header";
-import Footer from "@/feature/Footer/Footer";
-import styles from "../page.module.css"; // パス注意
-import RecordCard from "@/feature/TrainingRecord/RecordCard";
-import SaveCard from "@/feature/TrainingRecord/SaveCard";
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+'use client';
+import Header from '@/feature/Header/Header';
+import Footer from '@/feature/Footer/Footer';
+import styles from '@/global.css';
+import RecordCard from '@/feature/TrainingRecord/RecordCard';
+import SaveCard from '@/feature/SaveCard/SaveCard';
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   params: { menuId: string };
@@ -16,13 +16,13 @@ export default function Page({ params }: Props) {
   const router = useRouter();
   // 記録カードの配列を4つ用意
   const [records, setRecords] = useState([
-    { menuId: "", weight: "", reps: "", memo: "" },
-    { menuId: "", weight: "", reps: "", memo: "" },
-    { menuId: "", weight: "", reps: "", memo: "" },
-    { menuId: "", weight: "", reps: "", memo: "" },
+    { menuId: '', weight: '', reps: '', memo: '' },
+    { menuId: '', weight: '', reps: '', memo: '' },
+    { menuId: '', weight: '', reps: '', memo: '' },
+    { menuId: '', weight: '', reps: '', memo: '' },
   ]);
-  const [menuName, setMenuName] = useState("");
-  const [timer, setTimer] = useState(300); // 5分=300秒
+  const [menuName, setMenuName] = useState('');
+  const [timer, setTimer] = useState(300);
   const [isRunning, setIsRunning] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -52,18 +52,55 @@ export default function Page({ params }: Props) {
   ) => {
     setRecords((prev) =>
       prev.map((rec, i) =>
-        i === idx ? { ...rec, weight, reps, memo: memo ?? "" } : rec
+        i === idx ? { ...rec, weight, reps, memo: memo ?? '' } : rec
       )
     );
   };
 
+  // Saveボタン押下時
+  const handleSave = async () => {
+    // weightとrepsが両方埋まっているカードだけ抽出
+    const filledRecords = records.filter((rec) => rec.weight && rec.reps);
+
+    if (filledRecords.length === 0) {
+      alert('記録を入力してください');
+      return;
+    }
+
+    try {
+      await Promise.all(
+        filledRecords.map((rec) =>
+          fetch('http://localhost:3000/api/v1/users_trainings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({
+              users_training: {
+                // user_idは送らない
+                menu_id: menuId,
+                weight: rec.weight,
+                reps: rec.reps,
+                memo: rec.memo,
+                set_count: rec.index ?? 1,
+                training_date: new Date().toISOString(),
+              },
+            }),
+          })
+        )
+      );
+      router.push('/home');
+    } catch {
+      alert('記録の保存に失敗しました');
+    }
+  };
+
   // タイマー表示用
-  const min = String(Math.floor(timer / 60)).padStart(2, "0");
-  const sec = String(timer % 60).padStart(2, "0");
+  const min = String(Math.floor(timer / 60)).padStart(2, '0');
+  const sec = String(timer % 60).padStart(2, '0');
 
   return (
     <div
-      className={`bg-black min-h-screen flex flex-col ${styles["training-page"]}`}
+      className={`bg-black min-h-screen flex flex-col ${styles['training-page']}`}
     >
       <Header />
       <div className="flex-1 bg-[#a32d23] rounded-t-3xl pb-8 px-2 pt-4 flex flex-col">
@@ -92,7 +129,7 @@ export default function Page({ params }: Props) {
               onClick={() => setIsRunning((prev) => !prev)}
             >
               <span className="text-white text-2xl">
-                {isRunning ? "⏸" : "▶"}
+                {isRunning ? '⏸' : '▶'}
               </span>
             </button>
           </div>
@@ -102,7 +139,7 @@ export default function Page({ params }: Props) {
         <div className="text-white font-bold text-xl mb-2">Record</div>
         <div
           className="flex flex-col gap-2 overflow-y-auto"
-          style={{ height: "260px" }} // 4つのカードがぴったり見える高さに
+          style={{ height: '260px' }} // 4つのカードがぴったり見える高さに
         >
           {records.map((rec, idx) => (
             <RecordCard
@@ -118,7 +155,7 @@ export default function Page({ params }: Props) {
         </div>
         {/* Saveボタン */}
         <div className="mt-8 flex-shrink-0">
-          <SaveCard />
+          <SaveCard onClick={handleSave} />
         </div>
       </div>
       <Footer />
