@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-type Props = {
+type MenuRecordProps = {
   menuId?: string;
   index: number;
   weight: string;
