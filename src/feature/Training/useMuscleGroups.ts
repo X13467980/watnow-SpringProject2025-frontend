@@ -7,8 +7,12 @@ export function useMuscleGroups(): MuscleGroups[] {
   const [groups, setGroups] = useState<MuscleGroups[]>([]);
 
   useEffect(() => {
-    const data = getMuscleGroups();
-    setGroups(data);
+    async function fetchGroups() {
+      const data = await getMuscleGroups();
+      setGroups(data);
+    }
+
+    fetchGroups();
   }, []);
 
   return groups;
