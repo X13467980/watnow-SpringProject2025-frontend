@@ -6,7 +6,7 @@ export default function Footer() {
   const navItems = [
     { label: 'CAMERA', icon: <CiCamera size={24} />, link: '/camera' },
     { label: 'HOME', icon: <CiHome size={24} />, link: '/home' },
-    { label: 'LIST', icon: <CiBoxList size={24} />, link: '/hoge' },
+    { label: 'LIST', icon: <CiBoxList size={24} />, link: '/list' },
   ];
 
   return (
