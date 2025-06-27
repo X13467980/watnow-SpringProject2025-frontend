@@ -25,13 +25,13 @@ const RecordCard: React.FC<MenuRecordProps> = ({
     <div className="flex flex-col w-full max-w-md mb-2">
       <div className="flex">
         <div className="bg-white rounded-l-2xl flex items-center justify-center h-12 px-4 min-w-[48px] border-t-2 border-b-2 border-l-2 border-white">
-          <span className="font-bold text-[#a32d23] text-2xl">
+          <span className="font-bold text-[#B31717] text-2xl">
             {index + 1}.
           </span>
         </div>
         <div
           className={
-            `flex-1 bg-[#a32d23] h-12 flex items-center pl-2 pr-10 border-t-2 border-b-2 border-r-2 border-white relative rounded-tr-2xl` +
+            `flex-1 bg-[#B31717] h-12 flex items-center pl-2 pr-10 border-t-2 border-b-2 border-r-2 border-white relative rounded-tr-2xl` +
             (open ? '' : ' rounded-br-2xl')
           }
         >
@@ -65,14 +65,14 @@ const RecordCard: React.FC<MenuRecordProps> = ({
             onClick={() => setOpen((prev) => !prev)}
             type="button"
           >
-            <span className="text-[#a32d23] text-base font-bold">
+            <span className="text-[#B31717] text-base font-bold">
               {open ? '▲' : '▼'}
             </span>
           </button>
         </div>
       </div>
       {open && (
-        <div className="bg-[#a32d23] border-2 border-t-0 border-white rounded-b-2xl px-4 py-2 flex items-center">
+        <div className="bg-[#B31717] border-2 border-t-0 border-white rounded-b-2xl px-4 py-2 flex items-center">
           <label className="text-white font-bold text-base mr-2">Memo :</label>
 
           <input

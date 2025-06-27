@@ -155,7 +155,7 @@ function MenuRecordComponent({ menuId }: { menuId: string }) {
   return (
     <div className={'bg-black min-h-screen flex flex-col training-page'}>
       <Header />
-      <div className="flex-1 bg-[#a32d23] rounded-t-3xl pb-8 px-2 pt-4 flex flex-col">
+      <div className="flex-1 bg-[#B31717] rounded-t-3xl pb-8 px-2 pt-4 flex flex-col">
         {/* トレーニング名 */}
         <div className="flex items-center mb-6 justify-center relative">
           <button
