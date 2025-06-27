@@ -30,7 +30,7 @@ export const ActivityCalendar = () => {
     const todayStr = new Date().toISOString().split('T')[0];
     const daysSet = new Set(trainingDays);
     let streakCount = 0;
-    let date = new Date(todayStr);
+    const date = new Date(todayStr);
 
     while (true) {
       const dateStr = date.toISOString().split('T')[0];
