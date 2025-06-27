@@ -1,8 +1,9 @@
-import React from 'react'
+import { MuscleGroupsAccordion } from '@/feature/Training/MuscleGroupsAccordion';
+import React from 'react';
 
 const page = () => {
   return (
-    <div>トレーニングスタートページ</div>
+    <MuscleGroupsAccordion />
   )
 }
 
