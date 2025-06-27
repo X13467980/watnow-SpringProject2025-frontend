@@ -1,8 +1,8 @@
-"use client"
-import { useMuscleGroups } from "./useMuscleGroups"
+'use client';
+import { useMuscleGroups } from './useMuscleGroups';
 
 const MuscleGroupsAccordion = () => {
-  const groups = useMuscleGroups()
+  const groups = useMuscleGroups();
 
   return (
     <div className="bg-[#000000] min-h-screen p-8">
@@ -19,16 +19,20 @@ const MuscleGroupsAccordion = () => {
                 className="flex items-center backdrop-blur-sm border-4 border-white rounded-full bg-[#B31717]"
               >
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <span className="text-[#B31717] font-bold text-lg">{exerciseIndex + 1}</span>
+                  <span className="text-[#B31717] font-bold text-lg">
+                    {exerciseIndex + 1}
+                  </span>
                 </div>
-                <span className="text-white font-medium text-lg">{exercise}</span>
+                <span className="text-white font-medium text-lg">
+                  {exercise}
+                </span>
               </div>
             ))}
           </div>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export { MuscleGroupsAccordion };

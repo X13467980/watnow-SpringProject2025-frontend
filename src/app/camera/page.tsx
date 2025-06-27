@@ -40,7 +40,7 @@ export default function CameraPage() {
     if (!context) {
       setLoading(false);
       return;
-    };
+    }
 
     const width = videoRef.current.videoWidth;
     const height = videoRef.current.videoHeight;
@@ -53,7 +53,7 @@ export default function CameraPage() {
       if (!blob) {
         setLoading(false);
         return;
-      };
+      }
 
       const reader = new FileReader();
       reader.onloadend = async () => {
@@ -83,12 +83,15 @@ export default function CameraPage() {
     try {
       const formData = new FormData();
       const filename = imageFile instanceof File ? imageFile.name : 'image.jpg';
-      formData.append('image', imageFile, filename); 
+      formData.append('image', imageFile, filename);
 
-      const response = await fetch('http://localhost:3000/api/v1/machines/identify', {
-        method: 'POST',
-        body: formData,
-      });
+      const response = await fetch(
+        'http://localhost:3000/api/v1/machines/identify',
+        {
+          method: 'POST',
+          body: formData,
+        },
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -104,7 +107,7 @@ export default function CameraPage() {
     } catch (error) {
       console.error('判別失敗:', error);
       setErrorMessage(
-        `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`
+        `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`,
       );
       setLoading(false);
       return;
