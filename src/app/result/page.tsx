@@ -21,7 +21,7 @@ export default function ResultPage() {
   }, []);
 
   const handlePlayClick = (menuName: string) => {
-    router.push(`/training?menu=${encodeURIComponent(menuName)}`);
+    router.push(`/record/${encodeURIComponent(menuName)}`);
   };
 
   return (
