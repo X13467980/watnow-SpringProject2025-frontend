@@ -42,7 +42,7 @@ export const SetList = () => {
             >
               <button
                 onClick={() => handlePlayClick(item.title)}
-                className="absolute bottom-2 right-2 bg-red-600 rounded-full p-2"
+                className="absolute bottom-2 right-2 bg-[#B31717] rounded-full p-2"
               >
                 <FaPlay className="text-white" />
               </button>
