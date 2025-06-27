@@ -15,6 +15,7 @@ export default function LoginPage() {
 
     try {
       const res = await fetch("http://localhost:3000/api/v1/sessions", {
+        method: "POST", // ← ここを追加
         headers: {
           "Content-Type": "application/json",
         },
