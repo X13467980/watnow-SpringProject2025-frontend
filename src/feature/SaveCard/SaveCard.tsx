@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
-type Props = {
+type SaveCardProps = {
   onClick?: () => void;
 };
 
