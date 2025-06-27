@@ -9,31 +9,41 @@ export const ActivityCalendar = () => {
 
   // 仮のデータ 後々はAPIから取得する
   const trainingDays = [
-    '2025-06-21', '2025-06-22', '2025-06-24', '2025-06-25',
-    '2025-06-26', '2025-06-27', '2025-06-28', '2025-06-30',
-    '2025-07-01', '2025-07-02', '2025-07-03', '2025-07-04', '2025-07-05',
+    '2025-06-21',
+    '2025-06-22',
+    '2025-06-24',
+    '2025-06-25',
+    '2025-06-26',
+    '2025-06-27',
+    '2025-06-28',
+    '2025-06-30',
+    '2025-07-01',
+    '2025-07-02',
+    '2025-07-03',
+    '2025-07-04',
+    '2025-07-05',
   ];
 
   const totalDays = trainingDays.length;
 
   const streak = useMemo(() => {
-  const todayStr = new Date().toISOString().split('T')[0];
-  const daysSet = new Set(trainingDays);
-  let streakCount = 0;
-  let date = new Date(todayStr);
+    const todayStr = new Date().toISOString().split('T')[0];
+    const daysSet = new Set(trainingDays);
+    let streakCount = 0;
+    let date = new Date(todayStr);
 
-  while (true) {
-    const dateStr = date.toISOString().split('T')[0];
-    if (daysSet.has(dateStr)) {
-      streakCount++;
-      date.setDate(date.getDate() - 1); 
-    } else {
-      break;
+    while (true) {
+      const dateStr = date.toISOString().split('T')[0];
+      if (daysSet.has(dateStr)) {
+        streakCount++;
+        date.setDate(date.getDate() - 1);
+      } else {
+        break;
+      }
     }
-  }
 
-  return streakCount;
-}, [trainingDays]);
+    return streakCount;
+  }, [trainingDays]);
 
   return (
     <section className="mb-6">
