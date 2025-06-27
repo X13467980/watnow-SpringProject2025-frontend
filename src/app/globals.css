@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Zen+Kaku+Gothic+New:wght@400;900&display=swap');
+@import "tailwindcss";
 
 :root {
   --background: #ffffff;
