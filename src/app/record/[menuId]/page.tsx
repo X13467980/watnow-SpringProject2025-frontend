@@ -14,7 +14,6 @@ type MenuIdProps = {
 export default function Page({ params }: Props) {
   const { menuId } = params;
   const router = useRouter();
-  // 記録カードの配列を4つ用意
   const [records, setRecords] = useState([
     { menuId: '', weight: '', reps: '', memo: '' },
     { menuId: '', weight: '', reps: '', memo: '' },
