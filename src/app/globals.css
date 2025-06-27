@@ -43,7 +43,8 @@ body {
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-weight: 900;
   font-style: normal;
-  
+}
+
 /* カレンダー全体の文字を太字に */
 .custom-calendar,
 .custom-calendar * {
