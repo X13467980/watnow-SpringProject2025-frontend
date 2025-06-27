@@ -1,13 +1,18 @@
 "use client";
 import Header from "@/feature/Header/Header";
 import Footer from "@/feature/Footer/Footer";
-import styles from "./page.module.css";
+import styles from "../page.module.css"; // パス注意
 import RecordCard from "@/feature/TrainingRecord/RecordCard";
 import SaveCard from "@/feature/TrainingRecord/SaveCard";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Page({ menuId }: { menuId: string }) {
+type Props = {
+  params: { menuId: string };
+};
+
+export default function Page({ params }: Props) {
+  const { menuId } = params;
   const router = useRouter();
   // 記録カードの配列を4つ用意
   const [records, setRecords] = useState([
@@ -22,7 +27,7 @@ export default function Page({ menuId }: { menuId: string }) {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    fetch(`/api/menu/${menuId}`)
+    fetch(`http://localhost:3000/api/v1/menus/${menuId}`)
       .then((res) => res.json())
       .then((data) => setMenuName(data.name));
   }, [menuId]);
@@ -63,9 +68,9 @@ export default function Page({ menuId }: { menuId: string }) {
       <Header />
       <div className="flex-1 bg-[#a32d23] rounded-t-3xl pb-8 px-2 pt-4 flex flex-col">
         {/* トレーニング名 */}
-        <div className="flex items-center mb-6">
+        <div className="flex items-center mb-6 justify-center relative">
           <button
-            className="text-white text-3xl font-bold mr-4 active:opacity-70"
+            className="text-white text-3xl font-bold absolute left-0 active:opacity-70"
             onClick={() => router.back()}
             aria-label="前のページに戻る"
             type="button"

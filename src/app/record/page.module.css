@@ -1,0 +1,11 @@
+.training-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.training-content {
+  flex: 1;
+  background: #f0f0f0;
+}

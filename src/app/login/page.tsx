@@ -1,23 +1,22 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const res = await fetch('http://localhost:3000/api/v1/login', {
-        method: 'POST',
+      const res = await fetch("http://localhost:3000/api/v1/sessions", {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
@@ -27,12 +26,12 @@ export default function LoginPage() {
       if (res.ok) {
         // 必要ならトークンをlocalStorageなどに保存
         // localStorage.setItem('user', JSON.stringify(data.user));
-        router.push('/home');
+        router.push("/home");
       } else {
-        setError(data.error || 'ログインに失敗しました');
+        setError(data.error || "ログインに失敗しました");
       }
     } catch (err) {
-      setError('通信エラーが発生しました');
+      setError("通信エラーが発生しました");
     }
   };
 
@@ -56,7 +55,10 @@ export default function LoginPage() {
           className="border p-2 rounded"
           required
         />
-        <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+        <button
+          type="submit"
+          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
           ログイン
         </button>
       </form>
