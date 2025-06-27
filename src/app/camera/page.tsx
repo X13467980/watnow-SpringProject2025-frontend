@@ -3,8 +3,11 @@ import React, { useRef, useState } from 'react';
 import Header from '@/feature/Header/Header';
 import { useRouter } from 'next/navigation';
 import Footer from '@/feature/Footer/Footer';
+import Loading from '@/feature/Loading';
 import { TrainingMenu, MachineResponse } from '@/types/machine';
 import Image from 'next/image';
+
+import { CiCamera } from 'react-icons/ci';
 
 export default function CameraPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -12,6 +15,7 @@ export default function CameraPage() {
   const [streaming, setStreaming] = useState(false);
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleStartCamera = async () => {
     try {
@@ -30,8 +34,13 @@ export default function CameraPage() {
   const handleTakePhoto = async () => {
     if (!videoRef.current || !canvasRef.current) return;
 
+    setLoading(true);
+
     const context = canvasRef.current.getContext('2d');
-    if (!context) return;
+    if (!context) {
+      setLoading(false);
+      return;
+    };
 
     const width = videoRef.current.videoWidth;
     const height = videoRef.current.videoHeight;
@@ -41,7 +50,11 @@ export default function CameraPage() {
     context.drawImage(videoRef.current, 0, 0, width, height);
 
     canvasRef.current.toBlob(async (blob) => {
-      if (!blob) return;
+      if (!blob) {
+        setLoading(false);
+        return;
+      };
+
       const reader = new FileReader();
       reader.onloadend = async () => {
         localStorage.setItem('capturedImage', reader.result as string);
@@ -54,6 +67,8 @@ export default function CameraPage() {
   const handleUploadPhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    setLoading(true);
 
     const base64 = await toBase64(file);
     localStorage.setItem('capturedImage', base64);
@@ -91,6 +106,7 @@ export default function CameraPage() {
       setErrorMessage(
         `画像の判別に失敗しました。\nエラー内容: ${error instanceof Error ? error.message : '不明なエラー'}`
       );
+      setLoading(false);
       return;
     }
 
@@ -99,6 +115,7 @@ export default function CameraPage() {
       menus: JSON.stringify(menus),
     });
 
+    setLoading(false);
     router.push(`/result?${query.toString()}`);
   };
 
@@ -112,6 +129,7 @@ export default function CameraPage() {
 
   return (
     <div className="flex flex-col h-screen bg-black text-white">
+      <Loading visible={loading} />
       <Header />
       <div className="flex flex-col items-center justify-center flex-1 p-4 gap-4">
         {!streaming && (
@@ -121,7 +139,7 @@ export default function CameraPage() {
               className="w-full bg-[#B31717] flex justify-center items-center gap-2 text-lg font-bold py-4 px-6 rounded-xl hover:bg-[#A00000] transition"
             >
               <span>器具を撮影する</span>
-              <Image src="/camera.svg" alt="camera icon" width={24} height={24} />
+              <CiCamera size={32} />
             </button>
 
             <label className="w-full">
