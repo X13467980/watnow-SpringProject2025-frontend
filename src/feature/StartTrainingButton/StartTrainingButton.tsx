@@ -16,11 +16,9 @@ const StartTrainingButton = () => {
         <FaPlay />
       </span>
       <span>Start Training</span>
-
     </button>
   );
 };
-
 
 export { StartTrainingButton };
 
