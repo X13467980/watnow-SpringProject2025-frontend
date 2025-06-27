@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -85,7 +85,7 @@ body {
 
 /* ▼ 選択された日付（クリック後） */
 .custom-calendar .react-calendar__tile--active {
-  background-color: #B31717 !important;
+  background-color: #b31717 !important;
   color: white !important;
   font-weight: bold !important;
   border-radius: 9999px;
@@ -93,13 +93,13 @@ body {
 
 /* ▼ 今日の日付 */
 .custom-calendar .react-calendar__tile--now {
-  border: 2px solid #B31717;
+  border: 2px solid #b31717;
   color: white;
 }
 
 /* ▼ ホバー時 */
 .custom-calendar .react-calendar__tile:hover {
-  background-color: #B31717 !important;
+  background-color: #b31717 !important;
   color: white !important;
   cursor: pointer;
   border-radius: 9999px;
@@ -107,7 +107,7 @@ body {
 
 /* ▼ ナビゲーション矢印のホバー色（任意） */
 .custom-calendar .react-calendar__navigation__arrow:hover {
-  color: #B31717 !important;
+  color: #b31717 !important;
 }
 
 /* グローバルカスタムカレンダースタイル */
@@ -118,9 +118,9 @@ body {
   font-family: 'Arial', 'Helvetica', sans-serif;
   border-radius: 1rem;
   background-color: transparent;
-  border: none !important;      
-  box-shadow: none !important; 
-  padding: 0 !important;      
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 /* 曜日表示 */
@@ -148,16 +148,16 @@ body {
 }
 
 .react-calendar__tile--now {
-  border: 2px solid #B31717;
+  border: 2px solid #b31717;
 }
 
 .react-calendar__tile--active {
-  background-color: #B31717;
+  background-color: #b31717;
   color: white;
 }
 
 .react-calendar__tile:enabled:hover {
-  background-color: #B31717;
+  background-color: #b31717;
   color: white;
   cursor: pointer;
 }
@@ -181,7 +181,7 @@ body {
 }
 
 .react-calendar__month-view__days__day--weekend {
-  color: #B31717;
+  color: #b31717;
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
@@ -211,12 +211,23 @@ body {
 .react-calendar__year-view .react-calendar__tile:hover,
 .react-calendar__decade-view .react-calendar__tile:hover,
 .react-calendar__century-view .react-calendar__tile:hover {
-  background-color: #B31717;
+  background-color: #b31717;
   color: white;
 }
 
 /* 選択時赤く */
 .react-calendar__tile--active {
-  background-color: #B31717 !important;
+  background-color: #b31717 !important;
   color: white !important;
+}
+.training-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.training-content {
+  flex: 1;
+  background: #f0f0f0;
 }

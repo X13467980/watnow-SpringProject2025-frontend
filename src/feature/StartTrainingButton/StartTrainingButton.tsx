@@ -1,3 +1,4 @@
+
 'use client';
 import React from 'react';
 import { useStartTraining } from './useStartTraining';
@@ -20,3 +21,4 @@ const StartTrainingButton = () => {
 };
 
 export { StartTrainingButton };
+
