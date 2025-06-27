@@ -7,7 +7,7 @@ import SaveCard from '@/feature/SaveCard/SaveCard';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
-type Props = {
+type MenuIdProps = {
   params: { menuId: string };
 };
 
