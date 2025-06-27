@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-type MenuRecordProps = {
+export type MenuRecordProps = {
   menuId?: string;
   index: number;
   weight: string;
@@ -10,7 +10,7 @@ type MenuRecordProps = {
   onChange: (weight: string, reps: string, memo?: string) => void;
 };
 
-const RecordCard: React.FC<Props> = ({
+const RecordCard: React.FC<MenuRecordProps> = ({
   index,
   weight,
   reps,

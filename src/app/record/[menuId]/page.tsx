@@ -1,24 +1,52 @@
 'use client';
 import Header from '@/feature/Header/Header';
 import Footer from '@/feature/Footer/Footer';
-import styles from '@/global.css';
 import RecordCard from '@/feature/TrainingRecord/RecordCard';
 import SaveCard from '@/feature/SaveCard/SaveCard';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { MenuRecordProps } from '@/feature/TrainingRecord/RecordCard';
 
 type MenuIdProps = {
   params: { menuId: string };
 };
 
-export default function Page({ params }: Props) {
+export default function Page({ params }: MenuIdProps) {
   const { menuId } = params;
   const router = useRouter();
-  const [records, setRecords] = useState([
-    { menuId: '', weight: '', reps: '', memo: '' },
-    { menuId: '', weight: '', reps: '', memo: '' },
-    { menuId: '', weight: '', reps: '', memo: '' },
-    { menuId: '', weight: '', reps: '', memo: '' },
+  const [records, setRecords] = useState<MenuRecordProps[]>([
+    {
+      menuId: '',
+      weight: '',
+      reps: '',
+      memo: '',
+      index: 0,
+      onChange: () => {},
+    },
+    {
+      menuId: '',
+      weight: '',
+      reps: '',
+      memo: '',
+      index: 1,
+      onChange: () => {},
+    },
+    {
+      menuId: '',
+      weight: '',
+      reps: '',
+      memo: '',
+      index: 2,
+      onChange: () => {},
+    },
+    {
+      menuId: '',
+      weight: '',
+      reps: '',
+      memo: '',
+      index: 3,
+      onChange: () => {},
+    },
   ]);
   const [menuName, setMenuName] = useState('');
   const [timer, setTimer] = useState(300);
@@ -98,9 +126,7 @@ export default function Page({ params }: Props) {
   const sec = String(timer % 60).padStart(2, '0');
 
   return (
-    <div
-      className={`bg-black min-h-screen flex flex-col ${styles['training-page']}`}
-    >
+    <div className={'bg-black min-h-screen flex flex-col training-page'}>
       <Header />
       <div className="flex-1 bg-[#a32d23] rounded-t-3xl pb-8 px-2 pt-4 flex flex-col">
         {/* トレーニング名 */}
