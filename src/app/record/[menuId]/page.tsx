@@ -7,12 +7,39 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { MenuRecordProps } from '@/feature/TrainingRecord/RecordCard';
 
-type MenuIdProps = {
-  params: { menuId: string };
-};
+interface MenuIdProps {
+  params: Promise<{ menuId: string }>;
+}
 
 export default function Page({ params }: MenuIdProps) {
-  const { menuId } = params;
+  // params is a Promise, so we need to handle it in a client component
+  // Instead, pass params as a prop to a client component that can handle async logic
+  return (
+    <MenuRecordPage params={params} />
+  );
+}
+
+// Client component to handle async params
+function MenuRecordPage({ params }: MenuIdProps) {
+  const [menuId, setMenuId] = useState<string | null>(null);
+
+  useEffect(() => {
+    params.then((p) => setMenuId(p.menuId));
+  }, [params]);
+
+  if (!menuId) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <MenuRecordComponent menuId={menuId} />
+    </div>
+  );
+}
+
+// Create a separate client component for client-side functionality
+function MenuRecordComponent({ menuId }: { menuId: string }) {
   const router = useRouter();
   const [records, setRecords] = useState<MenuRecordProps[]>([
     {

@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Footer from '@/feature/Footer/Footer';
 import Loading from '@/feature/Loading';
 import { TrainingMenu, MachineResponse } from '@/types/machine';
-import Image from 'next/image';
 
 import { CiCamera } from 'react-icons/ci';
 
