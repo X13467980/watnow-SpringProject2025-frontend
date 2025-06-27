@@ -33,7 +33,7 @@ export default function SignupPage() {
 
     if (res.ok) {
       setMessage('登録に成功しました！');
-      router.push('/home'); 
+      router.push('/home');
     } else {
       setMessage(`エラー: ${data.errors?.join(', ')}`);
     }

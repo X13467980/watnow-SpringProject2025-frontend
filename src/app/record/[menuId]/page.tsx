@@ -75,12 +75,12 @@ export default function Page({ params }: MenuIdProps) {
     idx: number,
     weight: string,
     reps: string,
-    memo?: string
+    memo?: string,
   ) => {
     setRecords((prev) =>
       prev.map((rec, i) =>
-        i === idx ? { ...rec, weight, reps, memo: memo ?? '' } : rec
-      )
+        i === idx ? { ...rec, weight, reps, memo: memo ?? '' } : rec,
+      ),
     );
   };
 
@@ -112,8 +112,8 @@ export default function Page({ params }: MenuIdProps) {
                 training_date: new Date().toISOString(),
               },
             }),
-          })
-        )
+          }),
+        ),
       );
       router.push('/home');
     } catch {

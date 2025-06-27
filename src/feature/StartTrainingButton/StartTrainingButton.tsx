@@ -1,8 +1,7 @@
-
 'use client';
 import React from 'react';
 import { useStartTraining } from './useStartTraining';
-import { FaPlay } from 'react-icons/fa'; 
+import { FaPlay } from 'react-icons/fa';
 
 const StartTrainingButton = () => {
   const { handleClick } = useStartTraining('/training');
@@ -21,4 +20,3 @@ const StartTrainingButton = () => {
 };
 
 export { StartTrainingButton };
-

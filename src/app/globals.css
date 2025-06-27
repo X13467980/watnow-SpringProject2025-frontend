@@ -27,20 +27,20 @@ body {
 }
 
 .oswald {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
 
 .zen-kaku-gothic-new-regular {
-  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .zen-kaku-gothic-new-black {
-  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
   font-weight: 900;
   font-style: normal;
 }
