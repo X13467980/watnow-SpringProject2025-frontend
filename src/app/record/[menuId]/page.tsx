@@ -81,7 +81,7 @@ function MenuRecordComponent({ menuId }: { menuId: string }) {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    fetch(`https://watnow-springproject2025-backend.onrender.com/api/v1/menus/${menuId}`)
+    fetch(`http://localhost:3000/api/v1/menus/${menuId}`)
       .then((res) => res.json())
       .then((data) => setMenuName(data.name));
   }, [menuId]);
@@ -124,7 +124,7 @@ function MenuRecordComponent({ menuId }: { menuId: string }) {
     try {
       await Promise.all(
         filledRecords.map((rec) =>
-          fetch('https://watnow-springproject2025-backend.onrender.com/api/v1/users_trainings', {
+          fetch('http://localhost:3000/api/v1/users_trainings', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',

@@ -3,7 +3,7 @@ import { MuscleGroups } from '@/types/muscleGroups';
 export async function getMuscleGroups(): Promise<MuscleGroups[]> {
   try {
     const res = await fetch(
-      'https://watnow-springproject2025-backend.onrender.com/api/v1/menus/grouped_by_part',
+      'http://localhost:3000/api/v1/menus/grouped_by_part',
     );
 
     if (!res.ok) {

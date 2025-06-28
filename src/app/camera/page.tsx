@@ -85,7 +85,7 @@ export default function CameraPage() {
       formData.append('image', imageFile, filename);
 
       const response = await fetch(
-        'https://watnow-springproject2025-backend.onrender.com/api/v1/machines/identify',
+        'http://localhost:3000/api/v1/machines/identify',
         {
           method: 'POST',
           body: formData,
