@@ -1,4 +1,5 @@
 export type TrainingMenu = {
+  id: number;
   name: string;
   part: string;
   count: number;

@@ -5,9 +5,9 @@ type SaveCardProps = {
   onClick?: () => void;
 };
 
-const SaveCard: React.FC<Props> = ({ onClick }) => (
+const SaveCard: React.FC<SaveCardProps> = ({ onClick }) => (
   <button
-    className="w-full bg-white rounded-full py-3 text-[#a32d23] font-bold text-xl text-center transition active:opacity-80"
+    className="w-full bg-white rounded-full py-3 text-[#B31717] font-bold text-xl text-center transition active:opacity-80"
     onClick={onClick}
     type="button"
   >

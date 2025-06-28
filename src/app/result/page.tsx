@@ -20,8 +20,8 @@ export default function ResultPage() {
     }
   }, []);
 
-  const handlePlayClick = (menuName: string) => {
-    router.push(`/training?menu=${encodeURIComponent(menuName)}`);
+  const handlePlayClick = (menuId: number) => {
+    router.push(`/record/${menuId}`);
   };
 
   return (
@@ -46,9 +46,9 @@ export default function ResultPage() {
         {/* Trainings */}
         <h2 className="text-lg font-bold mb-2">Trainings:</h2>
         <div className="flex flex-col gap-4">
-          {menus.map((menu, index) => (
+          {menus.map((menu) => (
             <div
-              key={index}
+              key={menu.id}
               className="bg-[#B31717] p-4 rounded-xl flex items-center justify-between"
             >
               <div>
@@ -56,7 +56,7 @@ export default function ResultPage() {
                 <p className="text-sm text-white/80">{menu.part}</p>
               </div>
               <button
-                onClick={() => handlePlayClick(menu.name)}
+                onClick={() => handlePlayClick(menu.id)}
                 className="p-2 bg-white/10 hover:bg-white/20 active:scale-90 rounded-full transition duration-200"
               >
                 <FaPlay className="text-white text-xl" />

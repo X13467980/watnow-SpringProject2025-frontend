@@ -1,8 +1,16 @@
 'use client';
+
 import { useMuscleGroups } from './useMuscleGroups';
+import { FaPlay } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 const MuscleGroupsAccordion = () => {
   const groups = useMuscleGroups();
+  const router = useRouter();
+
+  const handlePlayClick = (menuId: number) => {
+    router.push(`/record/${menuId}`);
+  };
 
   return (
     <div className="bg-[#000000] min-h-screen p-8">
@@ -12,20 +20,21 @@ const MuscleGroupsAccordion = () => {
             <div className="w-2 h-12 bg-[#B31717] rounded-full mr-4"></div>
             <h2 className="text-white text-xl font-bold">{group.name}</h2>
           </div>
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             {group.exercises.map((exercise, exerciseIndex) => (
               <div
                 key={exerciseIndex}
-                className="flex items-center backdrop-blur-sm border-4 border-white rounded-full bg-[#B31717]"
+                className="bg-[#B31717] p-4 rounded-xl flex items-center justify-between"
               >
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <span className="text-[#B31717] font-bold text-lg">
-                    {exerciseIndex + 1}
-                  </span>
+                <div>
+                  <p className="font-bold text-white">{exercise}</p>
                 </div>
-                <span className="text-white font-medium text-lg">
-                  {exercise}
-                </span>
+                <button
+                  onClick={() => handlePlayClick(exerciseIndex + 1)}
+                  className="p-2 bg-white/10 hover:bg-white/20 active:scale-90 rounded-full transition duration-200"
+                >
+                  <FaPlay className="text-white text-xl" />
+                </button>
               </div>
             ))}
           </div>
