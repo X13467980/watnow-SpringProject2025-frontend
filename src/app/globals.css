@@ -1,16 +1,17 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Zen+Kaku+Gothic+New:wght@400;900&display=swap');
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -23,4 +24,230 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.oswald {
+  font-family: 'Oswald', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.zen-kaku-gothic-new-regular {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zen-kaku-gothic-new-black {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* カレンダー全体の文字を太字に */
+.custom-calendar,
+.custom-calendar * {
+  font-weight: bold;
+}
+
+/* 黒背景に馴染むダークカレンダー */
+.calendar-dark {
+  background-color: #000000 !important;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+/* 月・年の表示（例: May 2025） */
+.calendar-dark .react-calendar__navigation {
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+}
+
+/* 曜日ヘッダー（SUN～SAT） */
+.calendar-dark .react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+}
+
+/* 日付セル */
+.calendar-dark .react-calendar__tile {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 9999px;
+  color: white;
+  font-weight: bold;
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+/* 今日（Today）のスタイル */
+.calendar-dark .react-calendar__tile--now {
+  border: 2px solid white;
+}
+
+/* 選択された日（白背景＋黒文字） */
+.calendar-dark .react-calendar__tile--active {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+/* ▼ 選択された日付（クリック後） */
+.custom-calendar .react-calendar__tile--active {
+  background-color: #b31717 !important;
+  color: white !important;
+  font-weight: bold !important;
+  border-radius: 9999px;
+}
+
+/* ▼ 今日の日付 */
+.custom-calendar .react-calendar__tile--now {
+  border: 2px solid #b31717;
+  color: white;
+}
+
+/* ▼ ホバー時 */
+.custom-calendar .react-calendar__tile:hover {
+  background-color: #b31717 !important;
+  color: white !important;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+
+/* ▼ ナビゲーション矢印のホバー色（任意） */
+.custom-calendar .react-calendar__navigation__arrow:hover {
+  color: #b31717 !important;
+}
+
+/* グローバルカスタムカレンダースタイル */
+.react-calendar {
+  width: 350px;
+  max-width: 100%;
+  color: white;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  border-radius: 1rem;
+  background-color: transparent;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* 曜日表示 */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+}
+
+/* 各日付セル */
+.react-calendar__tile {
+  border-radius: 0.5rem !important;
+  background: none;
+  border: none !important;
+  border-radius: 9999px;
+  color: white;
+  text-align: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.react-calendar__tile--now {
+  border: 2px solid #b31717;
+}
+
+.react-calendar__tile--active {
+  background-color: #b31717;
+  color: white;
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: #b31717;
+  color: white;
+  cursor: pointer;
+}
+
+/* ナビゲーション（年・月・矢印） */
+.react-calendar__navigation {
+  justify-content: center;
+  color: white;
+  margin-bottom: 0.5rem !important;
+}
+
+.react-calendar__navigation__label {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.react-calendar__navigation__arrow {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #b31717;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #757575;
+}
+
+.react-calendar__tile:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.react-calendar__navigation button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 1.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: none;
+  color: white;
+}
+
+/* ホバー時赤く */
+.react-calendar__year-view .react-calendar__tile:hover,
+.react-calendar__decade-view .react-calendar__tile:hover,
+.react-calendar__century-view .react-calendar__tile:hover {
+  background-color: #b31717;
+  color: white;
+}
+
+/* 選択時赤く */
+.react-calendar__tile--active {
+  background-color: #b31717 !important;
+  color: white !important;
+}
+.training-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.training-content {
+  flex: 1;
+  background: #f0f0f0;
 }

@@ -14,11 +14,12 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const res = await fetch('http://localhost:3000/api/v1/login', {
+      const res = await fetch('http://localhost:3000/api/v1/sessions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // クッキーを送信するために必要
         body: JSON.stringify({ email, password }),
       });
 
@@ -26,13 +27,17 @@ export default function LoginPage() {
 
       if (res.ok) {
         // 必要ならトークンをlocalStorageなどに保存
-        // localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('user', JSON.stringify(data.user));
+        console.log('ログイン成功', data);
         router.push('/home');
       } else {
         setError(data.error || 'ログインに失敗しました');
       }
     } catch (err) {
-      setError('通信エラーが発生しました');
+      setError(
+        '通信エラーが発生しました' +
+        (err instanceof Error && err.message ? `: ${err.message}` : '')
+      );
     }
   };
 
@@ -56,7 +61,10 @@ export default function LoginPage() {
           className="border p-2 rounded"
           required
         />
-        <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+        <button
+          type="submit"
+          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
           ログイン
         </button>
       </form>

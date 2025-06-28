@@ -1,30 +1,24 @@
-import Header from '@/components/Header';
+'use client';
+
 import React from 'react';
+import Header from '@/feature/Header/Header';
+import Footer from '@/feature/Footer/Footer';
+import { StartTrainingButton } from '@/feature/StartTrainingButton/StartTrainingButton';
+import { ActivityCalendar } from '@/feature/ActivityCalendar/ActivityCalendar';
+import { SetList } from '@/feature/SetList/SetList';
 
 export default function HomePage() {
-    return (
-        <div className="flex flex-col min-h-screen bg-black text-white">
-            <Header />
+  return (
+    <div className="flex flex-col min-h-screen bg-black text-white">
+      <Header />
 
-            {/* メインコンテンツ */}
-            <main className="flex-grow flex flex-col justify-center items-center gap-6 p-8 text-center">
-                <h1 className="text-2xl font-bold">This is Home🏠</h1>
-                {/* 他のコンテンツをここに追加 */}
-            </main>
+      <main className="flex-grow px-6 pt-6">
+        <ActivityCalendar />
+        <SetList />
+      </main>
 
-            {/* フッター */}
-            <footer className="h-16 bg-black border-t border-gray-700 flex justify-around items-center">
-                {[
-                    { label: 'SNS', icon: 'search.svg' },
-                    { label: 'HOME', icon: 'home.svg' },
-                    { label: 'LIST', icon: 'menu.svg' },
-                ].map(({ label, icon }) => (
-                    <button key={label} className="flex flex-col items-center text-sm text-white">
-                        <img src={icon} alt={label} className="w-6 h-6 mb-1" />
-                        {label}
-                    </button>
-                ))}
-            </footer>
-        </div>
-    );
+      <StartTrainingButton />
+      <Footer />
+    </div>
+  );
 }
