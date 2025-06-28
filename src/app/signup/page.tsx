@@ -14,7 +14,7 @@ export default function SignupPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:3000/api/v1/users', {
+    const res = await fetch('https://watnow-springproject2025-backend.onrender.com/api/v1/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
