@@ -1,54 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# プロジェクト名
 
-## Getting Started
+## [Gymba+R](https://watnow-spring-project2025-frontend.vercel.app/)
 
-### Frontend (Next.js)
 
-First, run the development server:
+# 目次
 
-```bash
-npm run dev -- -p 3001
-# or
-yarn dev -- -p 3001
-# or
-pnpm dev -- -p 3001
+1. [プロジェクトについて](#プロジェクトについて)
+2. [技術スタック](#技術スタック)
+3. [環境](#環境)
+4. [ディレクトリ構成](#ディレクトリ構成)
+5. [開発環境](#開発環境)
+6. [本番環境](#本番環境)
+7. [コンタクト](#コンタクト)
 
+# プロジェクトについて
+
+## 概要
+
+立命館大学大阪いばらきキャンパス（OIC）には、学生が無料で利用できる附属のトレーニングルーム（以下「OICジム」）が存在する。このOICジムをより多くの学生に活用してもらい、トレーニングへのモチベーションを高めることを目的としたWebプロダクト
+
+# 技術スタック
+
+### 言語
+<img src="https://img.shields.io/badge/-TypeScript-000000.svg?logo=typescript&style=for-the-badge">
+
+### フレームワーク
+<img src="https://img.shields.io/badge/-Next.js-000000.svg?logo=next.js&style=for-the-badge">
+
+### ライブラリ
+<img src="https://img.shields.io/badge/-React-000000?style=for-the-badge&logo=react&logoColor=61DAFB">
+
+### スタイリング
+<img src="https://img.shields.io/badge/-TailwindCSS-000000.svg?logo=tailwindcss&style=for-the-badge">
+
+### 開発支援ツール
+<img src="https://img.shields.io/badge/-ESLint-000000.svg?logo=eslint&style=for-the-badge">
+<img src="https://img.shields.io/badge/-Prettier-000000.svg?logo=prettier&style=for-the-badge">
+
+### インフラ
+<img src="https://img.shields.io/badge/-Docker-000000.svg?logo=docker&style=for-the-badge">
+
+### デプロイメント
+<img src="https://img.shields.io/badge/-Vercel-000000.svg?logo=vercel&style=for-the-badge">
+
+### コード管理
+<img src="https://img.shields.io/badge/-github-000000.svg?logo=github&style=for-the-badge">
+
+
+
+# 環境
+
+| 言語・フレームワーク・ライブラリ  | バージョン |
+| --------------------- | ---------- |
+| TypeScript            | 5.x        |
+| Next.js               | 15.3.2     |
+| React                 | 19.0.0     |
+| React Icons           | 5.5.0      |
+| React Calender        | 6.0.0      |
+| Tailwind CSS          | 4.1.8      |
+| Prettier              | 3.6.2      |
+| ESlint                | 9.x        |
+
+その他のパッケージのバージョンはpackage.json を参照してください
+
+# ディレクトリ構成
+```
+.
+├── .DS_Store
+├── .gitignore
+├── .prettierrc 2.json
+├── .prettierrc.json
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── node_modules 2
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── .DS_Store
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── logo.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+├── src
+│   ├── app
+│   ├── feature
+│   └── types
+├── tailwind.config.ts
+└── tsconfig.json
 ```
 
-### Backend (Ruby on Rails)
+# 開発環境
 
-in https://github.com/X13467980/watnow-SpringProject2025-backend
+### 1. リポジトリをクローン
 
-```bash
-# install dependencies
-bundle install
+```
+git clone https://github.com/X13467980/watnow-SpringProject2025-frontend.git
+cd watnow-SpringProject2025-frontend
+```
+### 2. 依存関係のインストール
 
-# setup database
-bundle exec rails db:create db:migrate
-
-# run the Rails API server on port 3000
-bundle exec rails s -p 3000
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. 開発サーバーを起動
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. アプリケーションにアクセス
+```
+http://localhost:3000
+```
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+# 本番環境
+本プロジェクトは Vercel 上でデプロイされています。  
+URL: https://watnow-spring-project2025-frontend.vercel.app/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 本番ビルド手動実行（ローカルで確認する場合）
+```
+npm run build
+npm start
+```
+# コンタクト
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+###  開発・管理者情報
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# watnow-SpringProject2025-frontend
+<p>
+  <a href="https://github.com/X13467980" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-Youta_Yano-000?logo=github&style=for-the-badge">
+  </a><br>
+  <a href="https://github.com/sasatoast" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-punksguitar-000?logo=github&style=for-the-badge">
+  </a><br>
+  <a href="https://github.com/k4nkan" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-Kanta-000?logo=github&style=for-the-badge">
+  </a><br>
+  <a href="https://github.com/hiromuota166" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-hiromu-000?logo=github&style=for-the-badge">
+  </a><br>
+</p>
