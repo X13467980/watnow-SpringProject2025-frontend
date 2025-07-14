@@ -37,8 +37,8 @@
 <img src="https://img.shields.io/badge/-ESLint-000000.svg?logo=eslint&style=for-the-badge">
 <img src="https://img.shields.io/badge/-Prettier-000000.svg?logo=prettier&style=for-the-badge">
 
-### インフラ
-<img src="https://img.shields.io/badge/-Docker-000000.svg?logo=docker&style=for-the-badge">
+<!-- ### インフラ
+<img src="https://img.shields.io/badge/-Docker-000000.svg?logo=docker&style=for-the-badge"> -->
 
 ### デプロイメント
 <img src="https://img.shields.io/badge/-Vercel-000000.svg?logo=vercel&style=for-the-badge">
